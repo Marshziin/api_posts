@@ -24,7 +24,7 @@ export class ProfileController {
 
             if(requester) {
                 if(requester.password === password) {
-                    const existentProfile = await prismaClient.profile.findUnique({where: {userId: requester.id}})
+                    const existentProfile = await prismaClient.profile.findUnique({where: {username}})
                     if(!existentProfile){
                         const newProfile = await prismaClient.profile.create({
                             data: {
@@ -36,7 +36,7 @@ export class ProfileController {
                         return res.status(200).send('Perfil criado com sucesso!');
                     } else if(existentProfile) {
                         return res.status(400).send('ERRO 400. Esse usuário já possuí um perfil.')
-                    }
+                    };
                 } else if(requester.password !== password) {
                     return res.status(401).send('ERRO 401. Senha incorreta, por favor, tente novamente.')
                 }
