@@ -35,7 +35,7 @@ export class ProfileController {
 
                         return res.status(200).send('Perfil criado com sucesso!');
                     } else if(existentProfile) {
-                        return res.status(400).send('ERRO 400. Esse usuário já possuí um perfil.')
+                        return res.status(400).send('ERRO 400. Já existe um perfil com esse username.')
                     };
                 } else if(requester.password !== password) {
                     return res.status(401).send('ERRO 401. Senha incorreta, por favor, tente novamente.')
